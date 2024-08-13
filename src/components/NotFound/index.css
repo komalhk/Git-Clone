@@ -12,7 +12,7 @@
 }
 
 .not-found-heading {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -20,7 +20,7 @@
   color: #f8fafc;
 }
 .not-found-desc {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
@@ -30,7 +30,7 @@
 .not-found-button {
   width: 98px;
   height: 32px;
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 15px;
   background-color: #3b82f6;
   border-radius: 8px;
@@ -45,7 +45,7 @@
     width: 400px;
   }
   .not-found-heading {
-    font-family: 'Roboto';
+    font-family: 'HK Grotesk';
     font-size: 32px;
     font-weight: 500;
     line-height: 48px;
@@ -53,7 +53,7 @@
     color: #f8fafc;
   }
   .not-found-desc {
-    font-family: 'Roboto';
+    font-family: 'HK Grotesk';
     font-size: 20px;
     font-weight: 400;
     line-height: 32px;
@@ -63,7 +63,7 @@
   .not-found-button {
     width: 124px;
     height: 48px;
-    font-family: 'Roboto';
+    font-family: 'HK Grotesk';
     font-size: 15px;
     background-color: #3b82f6;
     border-radius: 8px;

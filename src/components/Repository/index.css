@@ -43,7 +43,7 @@
 
 .repo-no-data-heading,
 .repositorySuccessHeading {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-weight: 700;
   text-align: center;
 }
@@ -54,7 +54,7 @@
 }
 
 .repo-no-data-desc {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 3vw;
   line-height: 4vw;
   text-align: center;
@@ -65,7 +65,7 @@
   width: 25vw;
   background-color: #f8fafc;
   border: none;
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   cursor: pointer;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .repositorySuccessHeading {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-weight: 700;
   font-size: 6vw;
   line-height: 8vw;
@@ -101,7 +101,7 @@
 }
 
 .noDataHeading {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 5vw;
   font-weight: 600;
   line-height: 6vw;

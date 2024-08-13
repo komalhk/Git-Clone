@@ -96,14 +96,14 @@ class Home extends Component {
     }
   }
 
-  onClickTryAgain = username => {
+  onClickTryAgain = () => {
+    const {changeUserName} = this.context
     this.setState({
       apiStatus: apiStatusConstants.initial,
       errorMsg: '',
       profileDetails: [],
     })
-    // Reset the input field via context
-    this.context.changeUserName('')
+    changeUserName('')
   }
 
   renderGithubDetailsOfProfile = () => {
@@ -124,51 +124,51 @@ class Home extends Component {
     } = object
 
     return (
-      <div data-testid='repoItem' className='repo-item'>
-        <div className='profileDetailsContainer'>
-          <img src={avatarUrl} alt={name} className='avatar-url' />
-          <p className='login'>{login}</p>
-          <h1 className='name'>{name}</h1>
-          <p className='bio'>BIO</p>
-          <p className='bio'>{bio}</p>
-          <p className='bio'>Blog</p>
-          <p className='bio'>{blog}</p>
-          <div className='followers-following-public-container'>
-            <div className='followers-container'>
-              <p className='followers'>{followers}</p>
-              <p className='followers-heading'>FOLLOWERS</p>
+      <div data-testid="repoItem" className="repo-item">
+        <div className="profileDetailsContainer">
+          <img src={avatarUrl} alt={name} className="avatar-url" />
+          <p className="login">{login}</p>
+          <h1 className="name">{name}</h1>
+          <p className="bio">BIO</p>
+          <p className="bio">{bio}</p>
+          <p className="bio">Blog</p>
+          <p className="bio">{blog}</p>
+          <div className="followers-following-public-container">
+            <div className="followers-container">
+              <p className="followers">{followers}</p>
+              <p className="followers-heading">FOLLOWERS</p>
             </div>
-            <hr className='hor-line' />
-            <div className='following-container'>
-              <p className='followers'>{following}</p>
-              <p className='followers-heading'>FOLLOWING</p>
+            <hr className="hor-line" />
+            <div className="following-container">
+              <p className="followers">{following}</p>
+              <p className="followers-heading">FOLLOWING</p>
             </div>
-            <hr className='hor-line' />
-            <div className='pubic-repos-container'>
-              <p className='followers'>{publicRepos}</p>
-              <p className='followers-heading'>PUBLIC REPOS</p>
+            <hr className="hor-line" />
+            <div className="pubic-repos-container">
+              <p className="followers">{publicRepos}</p>
+              <p className="followers-heading">PUBLIC REPOS</p>
             </div>
           </div>
-          <div className='bottom-container'>
-            <div className='company-container'>
-              <p className='company-heading'>Company</p>
-              <div className='companyUrl'>
-                <RiBuildingLine className='icon-style' />
-                <p className='company'>{company}</p>
+          <div className="bottom-container">
+            <div className="company-container">
+              <p className="company-heading">Company</p>
+              <div className="companyUrl">
+                <RiBuildingLine className="icon-style" />
+                <p className="company">{company}</p>
               </div>
             </div>
-            <div className='company-container'>
-              <p className='company-heading'>Location</p>
-              <div className='companyUrl'>
-                <IoLocationOutline className='icon-style' />
-                <p className='company'>{location}</p>
+            <div className="company-container">
+              <p className="company-heading">Location</p>
+              <div className="companyUrl">
+                <IoLocationOutline className="icon-style" />
+                <p className="company">{location}</p>
               </div>
             </div>
-            <div className='company-container'>
-              <h1 className='company-heading'>Company Url</h1>
-              <div className='companyUrl'>
-                <IoMdLink className='icon-style' />
-                <a href={organizationsUrl} className='company'>
+            <div className="company-container">
+              <h1 className="company-heading">Company Url</h1>
+              <div className="companyUrl">
+                <IoMdLink className="icon-style" />
+                <a href={organizationsUrl} className="company">
                   {organizationsUrl}
                 </a>
               </div>
@@ -180,110 +180,95 @@ class Home extends Component {
   }
 
   renderFailureView = () => (
-    <div className='failureContainer'>
-      <h1 className='heading'>GitHub Profile Visualizer</h1>
+    <div className="failureContainer">
+      <h1 className="heading">GitHub Profile Visualizer</h1>
       <img
-        src='https://res.cloudinary.com/ddsn9feta/image/upload/v1718604995/Group_7522_f4ueqy.png'
-        alt='failure view'
-        className='error-view'
+        src="https://res.cloudinary.com/ddsn9feta/image/upload/v1718604995/Group_7522_f4ueqy.png"
+        alt="failure view"
+        className="error-view"
       />
-      <p className='errorName'>Something went wrong. Please try again.</p>
-      <UsernameContext.Consumer>
-        {({username}) => (
-          <button
-            className='tryButton'
-            type='button'
-            onClick={() => this.onClickTryAgain(username)}
-          >
-            Try again
-          </button>
-        )}
-      </UsernameContext.Consumer>
+      <p className="errorName">Something went wrong. Please try again.</p>
+      <button
+        className="tryButton"
+        type="button"
+        onClick={this.onClickTryAgain}
+      >
+        Try again
+      </button>
     </div>
   )
 
   renderLoaderView = () => (
-    <div className='loader-container' data-testid='loader'>
-      <Loader type='TailSpin' color='#3B82F6' height={50} width={50} />
+    <div className="loader-container" data-testid="loader">
+      <Loader type="TailSpin" color="#3B82F6" height={50} width={50} />
     </div>
   )
 
-  renderGithubProfilesDetails = () => {
-    const {apiStatus} = this.state
-    switch (apiStatus) {
-      case apiStatusConstants.success:
-        return this.renderGithubDetailsOfProfile()
-      case apiStatusConstants.failure:
-        return this.renderFailureView()
-      case apiStatusConstants.inProgress:
-        return this.renderLoaderView()
-      default:
-        return null
+  renderContent = () => {
+    const {errorMsg, apiStatus, profileDetails} = this.state
+    if (errorMsg) {
+      return (
+        <>
+          <p className="inputErrorMsg">{errorMsg}</p>
+          {this.renderFailureView()}
+        </>
+      )
     }
+
+    if (apiStatus === apiStatusConstants.inProgress) {
+      return this.renderLoaderView()
+    }
+
+    if (profileDetails.length === 0) {
+      return (
+        <div className="github-container">
+          <h1 className="heading">GitHub Profile Visualizer</h1>
+          <img
+            src="https://res.cloudinary.com/ddsn9feta/image/upload/v1718599647/Group_21x-mobileview_iyuarb.png"
+            alt="GitHub profile visualizer home page"
+            className="homeImage"
+          />
+        </div>
+      )
+    }
+
+    return this.renderGithubDetailsOfProfile()
   }
 
   render() {
+    const {username, changeUserName} = this.context
+
+    const onChangeUserName = event => {
+      changeUserName(event.target.value)
+    }
+
     return (
-      <UsernameContext.Consumer>
-        {({username, changeUserName}) => {
-          const {profileDetails, errorMsg} = this.state
-          const isListEmpty = profileDetails.length === 0
-
-          const onChangeUserName = event => {
-            changeUserName(event.target.value)
-          }
-
-          return (
-            <>
-              <Header />
-              <div className='home-container'>
-                <div className='input-container'>
-                  <input
-                    type='search'
-                    value={username}
-                    onChange={onChangeUserName}
-                    placeholder='Enter GitHub username'
-                    className='input-search-style'
-                  />
-                  <div className='search-icon-container'>
-                    <button
-                      type='button'
-                      onClick={() => this.onClickSearch(username)}
-                      className='search-button'
-                      data-testid='searchButton'
-                    >
-                      <HiOutlineSearch className='search-icon' />
-                    </button>
-                  </div>
-                </div>
-                {errorMsg ? (
-                  <>
-                    <p className='inputErrorMsg'>{errorMsg}</p>
-                    {this.renderFailureView()}
-                  </>
-                ) : (
-                  <div>
-                    {this.state.apiStatus === apiStatusConstants.inProgress ? (
-                      this.renderLoaderView()
-                    ) : isListEmpty ? (
-                      <div className='github-container'>
-                        <h1 className='heading'>GitHub Profile Visualizer</h1>
-                        <img
-                          src='https://res.cloudinary.com/ddsn9feta/image/upload/v1718599647/Group_21x-mobileview_iyuarb.png'
-                          alt='GitHub profile visualizer home page'
-                          className='homeImage'
-                        />
-                      </div>
-                    ) : (
-                      this.renderGithubProfilesDetails()
-                    )}
-                  </div>
-                )}
-              </div>
-            </>
-          )
-        }}
-      </UsernameContext.Consumer>
+      <>
+        <Header />
+        <div className="home-container">
+          <div className="input-container">
+            <input
+              type="search"
+              value={username}
+              onChange={onChangeUserName}
+              placeholder="Enter GitHub username"
+              className="input-search-style"
+            />
+            <div className="search-icon-container">
+              <button
+                type="button"
+                onClick={() => this.onClickSearch(username)}
+                className="search-button"
+                data-testid="searchButton"
+                aria-label="Search GitHub username"
+              >
+                <HiOutlineSearch className="search-icon" />
+              </button>
+            </div>
+          </div>
+          {this.renderContent()}
+        </div>
+      </>
     )
   }
 }

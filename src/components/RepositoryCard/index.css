@@ -34,7 +34,7 @@
 }
 
 .repoItemHeading {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;
@@ -52,7 +52,7 @@
 }
 
 .repoItemDesc {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -109,7 +109,7 @@
 }
 
 .repoItemStar {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 13px;
   color: #ffffff;
 }
@@ -141,7 +141,7 @@
 }
 
 .repoItemForks {
-  font-family: 'Roboto';
+  font-family: 'HK Grotesk';
   font-size: 13px;
   color: #ffffff;
 }
